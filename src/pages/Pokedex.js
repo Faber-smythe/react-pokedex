@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {ReactComponent as Pokeball} from '../img/pokeball_cover.svg';
 import PokemonTable from '../containers/PokemonTable.js';
 import PokemonDetails from '../containers/PokemonDetails.js';
+import PokedexNav from '../containers/PokedexNav.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,12 +19,11 @@ export default class Pokedex extends Component {
   constructor(){
     super();
     this.state = {
-      loading: false,
+      loading: true,
       pokemon_data: [],
       requestLength: 151,
       showDetails: null,
       goHome: false,
-      loading_details: true
     }
     this.checkLoading = this.checkLoading.bind(this);
   }
@@ -66,7 +66,7 @@ export default class Pokedex extends Component {
 
         pokemon_data.push(data);
         if(pokemon_data.length == 151){
-          this.setState({  pokemon_data: this.sortById(pokemon_data)  })
+          this.setState({  pokemon_data: this.sortById(pokemon_data), loading: false  })
         }
       })
       // Now fill in the STATE !
@@ -99,26 +99,40 @@ export default class Pokedex extends Component {
     if((this.state.pokemon_data)[expected_length]){
       console.log(this.state.pokemon_data[5]);
     }
-
+    console.log(this.state.loading);
     return(<>
-      <h1>pokédex</h1>
-      {/* Display Pokemon Table */}
-      <PokemonTable
-        list={this.state.pokemon_data}
-        expected_length={expected_length}
-        sortById={this.sortById}
-      />
+      {/* still loading ? */}
+      {this.state.loading && <Pokeball className="pokeball_cover"/>}
 
-      {/*Display details if row was clicked*/}
-      <Route exact path="/pokedex/:name" children={
-        <PokemonDetails
-        expected_length={expected_length}
-        data={this.state.pokemon_data}
-        loading_details={this.state.loading_details}
-        findPkmn={this.findPkmnByFrenchName}
-        checkLoading={this.checkLoading}
+      {/* finished loading ? */}
+      {!this.state.loading &&
+      <>
+      <nav>
+        <PokedexNav pokemon_data={this.state.pokemon_data} toggleFilter={this.toggleFilter}/>
+      </nav>
+
+
+      <section id="page_content">
+        <h1>pokédex</h1>
+        {/* Display Pokemon Table */}
+        <PokemonTable
+          list={this.state.pokemon_data}
+          expected_length={expected_length}
+          sortById={this.sortById}
         />
-      } />
+        {/*Display details if row was clicked*/}
+        <Route exact path="/pokedex/:name" children={
+          <PokemonDetails
+          expected_length={expected_length}
+          data={this.state.pokemon_data}
+          loading_details={this.state.loading_details}
+          findPkmn={this.findPkmnByFrenchName}
+          checkLoading={this.checkLoading}
+          />
+        } />
+      </section>
+      </>}
+
     </>);
   }
 }

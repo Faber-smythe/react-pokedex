@@ -25,10 +25,10 @@ export default class DetailsFooter extends Component {
     return (
       <div id="details_footer">
         {
-          pkmn &&
-          <><span><Link to={"/pokedex/"+evolves_from.toLowerCase()}>{evolves_from}</Link></span>
-          <span><Link to={"/pokedex/"+evolves_to.toLowerCase()}>{evolves_to}</Link></span></>
-        }
+          pkmn && <>
+          {evolves_from && <span><Link to={"/pokedex/"+evolves_from.toLowerCase()}>Evolue depuis : {evolves_from}</Link></span>}
+          {evolves_to && <span><Link to={"/pokedex/"+evolves_to.toLowerCase()}>Evolue vers : {evolves_to}</Link></span>}
+        </>}
       </div>
     )
   }

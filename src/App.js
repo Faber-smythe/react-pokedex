@@ -15,32 +15,19 @@ import Abilities from "./pages/Abilities.js";
 function App() {
   return (
     <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/pokedex">Pokedex</Link>
-            </li>
-            <li>
-              <Link to="/abilities">Abilities</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <section id="page_content">
-          <Switch>
-            <Route path="/abilities">
-              <Abilities />
-            </Route>
-            <Route path="/pokedex">
-              <Pokedex />
-            </Route>
-            <Route path="/">
-              <Pokedex />
-            </Route>
-          </Switch>
-        </section>
+      {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/abilities">
+          <Abilities />
+        </Route>
+        <Route path="/pokedex">
+          <Pokedex />
+        </Route>
+        <Route path="/">
+          <Pokedex />
+        </Route>
+      </Switch>
     </Router>
   );
 }
