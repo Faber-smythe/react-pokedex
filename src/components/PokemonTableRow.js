@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 export default function PokemonTableRow(props){
-  const {id, name, spriteSrc, handlePkmnRowclick, pkmn} = props;
+  const {id, name, spriteSrc, pkmn} = props;
   return(
     <tr>
       <td>
