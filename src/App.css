@@ -1,22 +1,221 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
+body{
+  height: 100vh;
   background-color: #282c34;
-  min-height: 100vh;
+  color: #eee;
+}
+#root{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*
+    COVER LOADING
+ */
+.pkb_center{
+   animation-name: glow;
+   animation-iteration-count: infinite;
+   animation-duration: 1.3s;
+ }
+ .pokeball_cover{
+   position: fixed;
+ }
+/*
+    CONSTANT NAVIGATION
+ */
+a{
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+nav{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background-color: rgba(40, 44, 52, 0.5);
+  width: 40vw;
+}
+nav a{
+  padding: 10px 75px;
+}
+nav a:hover{
+  opacity: 0.7;
+}
+nav ul{
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  width: 100%;
+  justify-content: center;
+}
+/*
+    CONTENT HOLDER
+ */
+#page_content{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-self: center;
+  width: 80vw;
+}
+h1{
+  font-size: 4em;
+  margin: 40px;
+  text-transform: uppercase;
+  margin-top: 10vh;
+  transition: all 0.2s ease;
+}
+h2{
+  margin: 10px 0px;
+}
+h3{
+  margin: 0px;
+  font-size: 1em;
 }
 
-.App-link {
-  color: #09d3ac;
+/*
+    TABLE STYLE
+ */
+table{
+  border-collapse: collapse;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 10vh;
+  transition: all 0.2s ease;
+}
+thead{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+tbody tr{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+tbody tr:nth-child(2n){
+  background-color: rgba(255, 255, 255, 0.2);
+}
+th{
+  padding: 40px 0px;
+  line-height: 2em;
+  font-size: 1.5em;
+  text-align: center;
+}
+td{
+  position: relative;
+  text-align: center;
+}
+tr{
+  transition: all 0.2s ease;
+}
+tbody tr:hover{
+  background-color: rgba(70, 187, 204, 0.1) !important;
+  cursor: pointer;
+}
+table a{
+  display: block;
+}
+table .expand_link{
+  line-height: 6em;
+}
+
+/*
+    POKEMON DETAILS
+*/
+
+#details_section{
+  position: fixed;
+  top: 3vh;
+  height: 94vh;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  background-color: #282c34;
+  border: 1px solid #eee;
+}
+#close_link{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+#close_link:hover{
+  opacity: 0.5;
+}
+/* ----- */
+#details_header, #details_footer, #details_body{
+  display: flex;
+  margin: 10px  40px;
+}
+#details_header{
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/* ----- */
+#details_body{
+  flex-direction: column;
+}
+#details_body>#illustration{
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: inset 0px 0px 20px 20px rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+}
+#details_body p{
+  text-indent: 3em;
+  text-align: justify;
+  padding: 10px;
+  width: 60%;
+  border-right: 1px solid #eee;
+}
+#details_body ul{
+  list-style-type: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#details_body li{
+  display: flex;
+  align-items: center;
+}
+#details_data{
+  display: flex;
+}
+#details_data img{
+  margin: 0px 7px;
+}
+/* ----- */
+#details_footer{
+  justify-content: space-between;
+}
+#details_footer span{
+  margin: 5px 30px;
+}
+
+ /*
+    CSS ANIMATIONS
+ */
+@keyframes glow {
+  0%{fill: #E6E9ED  }
+  85%{fill: #de4958  }
+}
+
+@media screen and (orientation:portrait){
+  .pokeball_cover{
+    position: fixed;
+    transform: scale(1.1);
+    height: 100vh;
+  }
+}
+@media screen and (orientation:landscape){
+  .pokeball_cover{
+    position: fixed;
+    transform: scale(1.1);
+    width: 100vw;
+    margin: 0 auto;
+  }
 }
