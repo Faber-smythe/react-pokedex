@@ -17,10 +17,10 @@ export default class DetailsFooter extends Component {
     let evolves_from = '';
     let evolves_to = '';
     if(pkmn && pkmn.evolves_from){
-       evolves_from = PkmnByEnName(data, pkmn.evolves_from)[0].names[6].name ;
+       evolves_from = PkmnByEnName(data, pkmn.evolves_from)[0] ? PkmnByEnName(data, pkmn.evolves_from)[0].names[6].name : "";
     }
     if(pkmn && pkmn.evolves_to){
-       evolves_to = PkmnByEnName(data, pkmn.evolves_to)[0].names[6].name ;
+       evolves_to = PkmnByEnName(data, pkmn.evolves_to)[0] ? PkmnByEnName(data, pkmn.evolves_to)[0].names[6].name : "";
     }
     return (
       <div id="details_footer">

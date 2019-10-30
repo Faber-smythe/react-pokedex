@@ -16,8 +16,8 @@ import PkmnByEnName from '../Tools/PkmnByEnName';
 
 export default class Pokedex extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       loading: true,
       pokemon_data: [],
@@ -66,7 +66,7 @@ export default class Pokedex extends Component {
 
         pokemon_data.push(data);
         if(pokemon_data.length == 151){
-          this.setState({  pokemon_data: this.sortById(pokemon_data), loading: false  })
+          this.setState({  pokemon_data: this.sortById(pokemon_data), loading: false })
         }
       })
       // Now fill in the STATE !
@@ -92,12 +92,21 @@ export default class Pokedex extends Component {
   checkLoading(loading){
     console.log(loading);
   }
-
+  filterPokemonData(data, filters){
+    if(filters && filters.search){
+      let filtered_data
+      if(filters.search){filtered_data = data.filter(elem => (elem.names[6].name.toLowerCase()).includes(filters.search))}
+      return filtered_data
+    }else{
+      return data;
+    }
+  }
   render(){
     const expected_length = (this.state.requestLength)-1;
-
+    const {queryParams} = this.props;
+    // DEBUG:
     if((this.state.pokemon_data)[expected_length]){
-      console.log(this.state.pokemon_data[5]);
+      //console.log(this.state.pokemon_data[5]);
     }
     return(<>
       {/* still loading ? */}
@@ -107,7 +116,7 @@ export default class Pokedex extends Component {
       {!this.state.loading &&
       <>
       <nav>
-        <PokedexNav pokemon_data={this.state.pokemon_data} toggleFilter={this.toggleFilter}/>
+        <PokedexNav pokemon_data={this.state.pokemon_data} filters={queryParams}/>
       </nav>
 
 
@@ -115,7 +124,7 @@ export default class Pokedex extends Component {
         <h1>pokédex</h1>
         {/* Display Pokemon Table */}
         <PokemonTable
-          list={this.state.pokemon_data}
+          list={this.filterPokemonData(this.state.pokemon_data, queryParams)}
           expected_length={expected_length}
           sortById={this.sortById}
         />
