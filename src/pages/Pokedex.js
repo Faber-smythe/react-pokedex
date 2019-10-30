@@ -99,7 +99,6 @@ export default class Pokedex extends Component {
     if((this.state.pokemon_data)[expected_length]){
       console.log(this.state.pokemon_data[5]);
     }
-    console.log(this.state.loading);
     return(<>
       {/* still loading ? */}
       {this.state.loading && <Pokeball className="pokeball_cover"/>}

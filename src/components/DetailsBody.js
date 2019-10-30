@@ -18,7 +18,7 @@ export default function DetailsBody(props) {
             <li>hauteur: {(pkmn.pkmn_sheet.height)*10}.00 cm</li>
             <li>poids: {(pkmn.pkmn_sheet.height)/10}0 kg</li>
             <li>types:
-              {pkmn.pkmn_sheet.types.map((elem, index) => <img key= {index} src={types()[elem.type.name]}/>)}
+              {pkmn.pkmn_sheet.types.map((elem, index) => <img key= {index} src={types('en')[elem.type.name]}/>)}
             </li>
 
           </ul>}

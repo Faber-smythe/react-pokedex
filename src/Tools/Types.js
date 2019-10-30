@@ -19,13 +19,12 @@ import steel from '../img/types/steel.png';
 import unknown from '../img/types/unknown.png';
 import water from '../img/types/water.png';
 
-export default function types(){
+export default function types(language){
   return {
-    bug,
-    dark,
+    // english index
+    en: {bug,
     dragon,
     electric,
-    fairy,
     fighting,
     fire,
     flying,
@@ -37,8 +36,22 @@ export default function types(){
     poison,
     psychic,
     rock,
-    steel,
-    unknown,
-    water
-  }
+    water},
+    // french index if different
+    fr: {insecte: bug,
+    dragon,
+    électrique: electric,
+    combat: fighting,
+    feu: fire,
+    vol: flying,
+    spectre: ghost,
+    plante: grass,
+    sol: ground,
+    glace: ice,
+    normal,
+    poison,
+    psy: psychic,
+    roche: rock,
+    eau: water},
+  }[language]
 }
