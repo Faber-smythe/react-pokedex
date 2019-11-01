@@ -10,6 +10,8 @@ constructor(props){
     filters: props.filters,
     input_value : '',
   }
+  this.handleSubmit = this.handleSubmit.bind(this);
+  this.search_link = React.createRef();
 }
 handleSearchChange(e){
   let input = e.target.value;
@@ -19,6 +21,10 @@ handleSearchChange(e){
     return({filters: x})
   })
 }
+handleSubmit(e){
+  e.preventDefault();
+  this.search_link.current.click()
+}
 render(){
   const {filters} = this.state;
   const search_input = filters && filters.search ? filters.search : "";
@@ -26,8 +32,11 @@ render(){
 
   return (
     <nav>
-      <input type="text" value={search_input} onChange={(e) => {this.handleSearchChange(e)}}/>
-      <Link to={search_target}>Rechercher</Link>
+      <form onSubmit={(e)=>{this.handleSubmit(e)}}>
+        <input type="text" value={search_input} onChange={(e) => {this.handleSearchChange(e)}}/>
+        <Link ref={this.search_link} to={search_target}>Rechercher</Link>
+        <input type="submit" style={{height: "1px", width: "1px", opacity:"0"}} />
+      </form>
     </nav>
   );
 }

@@ -38,21 +38,30 @@ nav{
   z-index: 110;
   top: 0px;
   width: 100vw;
-  background-color: rgba(40, 44, 52, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
   padding: 10px;
   display: flex;
   justify-content: flex-end;
 }
-nav input{
+nav input, nav a{
   padding: 5px;
-  margin: 0px 20px;
-}
-nav a{
-  margin: 0px 20px;
+  margin-right: 50px;
+  background: transparent;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 nav a:hover{
   opacity: 0.5;
+  cursor: pointer;
+}
+nav input[type='submit']{
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+  margin: 0px;
+  padding: 0px;
 }
 /*
     CONTENT HOLDER
@@ -128,9 +137,9 @@ table .expand_link{
 
 #details_section{
   position: fixed;
-  top: 3vh;
-  height: 94vh;
-  width: 60vw;
+  top: 7vh;
+  height: 86vh;
+  width: 70vw;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -166,7 +175,7 @@ table .expand_link{
   background-color: rgba(70, 187, 204, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 0px 0px 60px 40px rgba(0, 0, 0, 0.3);
-  padding: 40px 10px;
+  padding: 10px 10px;
 }
 #details_body>#illustration{
   margin: 0 auto;

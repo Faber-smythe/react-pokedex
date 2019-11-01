@@ -1,7 +1,6 @@
 
 import React from 'react';
 import qs from 'qs';
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -22,15 +21,15 @@ function App() {
         <Route path="/abilities">
           <Abilities />
         </Route>
-        <Route path="/pokedex" component={Test}>
+        <Route path="/pokedex" component={QueryToPokedex}>
         </Route>
-        <Route path="/" component={Test}>
+        <Route path="/" component={QueryToPokedex}>
         </Route>
       </Switch>
     </Router>
   );
 }
-const Test = ({match, location}) => {
+const QueryToPokedex = ({match, location}) => {
   const params = location.search ? (qs.parse(location.search.slice(1, location.search.length))) : null;
   return(
     <Pokedex queryParams={params}/>

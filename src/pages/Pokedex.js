@@ -40,13 +40,15 @@ export default class Pokedex extends Component {
       const package_res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=${this.state.requestLength}`);
       const raw_data = await package_res.json();
       // Loop through that list
-      (raw_data.results).forEach(async (pkmn) =>{
+      (raw_data.results).forEach(async (pkmn, index) =>{
         // Get the response from pokemon-species endpoint (for french language option)
         const specie_res = await fetch(pkmn.url);
         let data = await specie_res.json()
+
         // but also the response from pokemon endpoint (much useful info, like sprites)
         // that response will be sub-added under "pkmn_sheet" property
         const sheet_res = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id}`);
+        if(sheet_res.status == 404){ console.log(`l'api a renvoyé une erreur #404 pour l'id ${data.id} à: ${sheet_res.url}`) }
         data.pkmn_sheet = await sheet_res.json();
 
         //Then also get the evolution before and after, if they exist (by english name /!\)
@@ -63,16 +65,14 @@ export default class Pokedex extends Component {
         };
         data.evolves_to = evolves_to;
 
-
         pokemon_data.push(data);
-        if(pokemon_data.length == 151){
+        if(index+1 == this.state.requestLength){
           this.setState({  pokemon_data: this.sortById(pokemon_data), loading: false })
         }
       })
       // Now fill in the STATE !
     }catch(err){
       console.log(err);
-      throw err;
     }
   }
 
@@ -115,9 +115,7 @@ export default class Pokedex extends Component {
       {/* finished loading ? */}
       {!this.state.loading &&
       <>
-      <nav>
-        <PokedexNav pokemon_data={this.state.pokemon_data} filters={queryParams}/>
-      </nav>
+      <PokedexNav pokemon_data={this.state.pokemon_data} filters={queryParams}/>
 
 
       <section id="page_content">
