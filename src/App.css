@@ -5,10 +5,11 @@ body{
   color: #eee;
 }
 #root{
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: url('./img/background.png') no-repeat fixed top right;
+    background-size: cover;
 }
 a{
   text-decoration: none;
@@ -168,6 +169,8 @@ table .expand_link{
 #details_header{
   flex-direction: column;
   justify-content: flex-start;
+  background: url('./img/pokedex_patern.png') no-repeat top left;
+  background-size: contain;
 }
 /* ----- */
 #details_body{

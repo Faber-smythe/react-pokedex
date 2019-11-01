@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import Pokedex from "./pages/Pokedex.js";
 import PokemonDetails from "./containers/PokemonDetails.js";
-import Abilities from "./pages/Abilities.js";
 
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
       <Switch>
-        <Route path="/abilities">
-          <Abilities />
-        </Route>
         <Route path="/pokedex" component={QueryToPokedex}>
         </Route>
         <Route path="/" component={QueryToPokedex}>
