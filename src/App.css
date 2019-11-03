@@ -36,14 +36,18 @@ a{
  */
 nav{
   position: fixed;
-  z-index: 110;
+  z-index: 50;
   top: 0px;
+  left: 0px;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
-  width: 100vw;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   justify-content: flex-end;
+}
+nav form{
+  display: flex;
+  align-items: center;
 }
 nav input, nav a{
   padding: 5px;
@@ -63,6 +67,21 @@ nav input[type='submit']{
   opacity: 0;
   margin: 0px;
   padding: 0px;
+}
+#type_inputs{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 15px;
+  width: 30vw;
+}
+#type_inputs img{
+  height: 20px;
+  margin: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#type_inputs .inactive{
+  opacity: 0.5
 }
 /*
     CONTENT HOLDER
@@ -144,6 +163,7 @@ table .expand_link{
 
 #details_section{
   position: fixed;
+  z-index: 60;
   top: 7vh;
   height: 86vh;
   width: 70vw;
@@ -170,7 +190,7 @@ table .expand_link{
 /* ----- */
 #details_header, #details_footer, #details_body{
   display: flex;
-  margin: 10px  40px;
+  margin: 5px  40px;
 }
 #details_header{
   margin-top: 0px;
@@ -183,13 +203,27 @@ table .expand_link{
   background-color: rgba(70, 187, 204, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 0px 0px 60px 40px rgba(0, 0, 0, 0.3);
-  padding: 10px 10px;
+  padding: 15px 10px;
 }
-#details_body>#illustration{
+#illustration{
+  position: relative;
   margin: 0 auto;
   padding: 5px;
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: inset 0px 0px 20px 20px rgba(255, 255, 255, 0.2);
   border-radius: 100px;
+}
+#illustration img{
+  height: 90%;
+  position: absolute;
+  animation-name: illustration_hover;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
 }
 #details_body p{
   text-indent: 3em;
@@ -235,7 +269,11 @@ table .expand_link{
 @keyframes glow {
   0%{transform: rotate(0deg)  }
   100%{transform: rotate(360deg)  }
-
+}
+@keyframes illustration_hover {
+ 0%{margin-top: 7px}
+ 50%{margin-top: -7px}
+ 100%{margin-top: 7px}
 }
 
 @media screen and (orientation:portrait){

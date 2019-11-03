@@ -26,7 +26,21 @@ function App() {
   );
 }
 const QueryToPokedex = ({match, location}) => {
-  const params = location.search ? (qs.parse(location.search.slice(1, location.search.length))) : null;
+  const raw_params = location.search ? (qs.parse(location.search.slice(1, location.search.length))) : null;
+  let params = {
+    search: raw_params && raw_params.search ? raw_params.search : null,
+    types: []
+  }
+  ;
+  if(location.search){
+    Object.keys(raw_params).forEach(param_key =>{
+      if(param_key.includes('type')){
+        params.types.push(raw_params[param_key]);
+      }
+    })
+  }
+   // console.log(location);
+   // console.log(params);
   return(
     <Pokedex queryParams={params}/>
   )

@@ -25,7 +25,6 @@ export default class Pokedex extends Component {
       showDetails: null,
       goHome: false,
     }
-    this.checkLoading = this.checkLoading.bind(this);
   }
   componentDidMount(){
     this.setState({loading: true});
@@ -89,17 +88,31 @@ export default class Pokedex extends Component {
       if((pkmn.names[6].name).toLowerCase() == name.toLowerCase()) return true
     })
   }
-  checkLoading(loading){
-    console.log(loading);
-  }
   filterPokemonData(data, filters){
+    console.log(filters);
+    let filtered_data = data;
     if(filters && filters.search){
-      let filtered_data
-      if(filters.search){filtered_data = data.filter(elem => (elem.names[6].name.toLowerCase()).includes(filters.search))}
-      return filtered_data
-    }else{
-      return data;
+      if(filters.search){filtered_data = filtered_data.filter(elem => (elem.names[6].name.toLowerCase()).includes(filters.search))}
     }
+    if(filters && filters.types && filters.types.length){
+      let type_matching_data = [];
+
+      filters.types.forEach(type=>{
+
+        filtered_data.forEach(elem => {
+          elem.pkmn_sheet.types.forEach(subelem=>{
+            if(subelem.type.name === types('fr')[type].en_label && !type_matching_data.includes(elem)){
+              type_matching_data.push(elem)
+            }
+          })
+        });
+      })
+
+
+
+      filtered_data = type_matching_data;
+    }
+    return filtered_data;
   }
   render(){
     const expected_length = (this.state.requestLength)-1;
@@ -108,6 +121,7 @@ export default class Pokedex extends Component {
     if((this.state.pokemon_data)[expected_length]){
       //console.log(this.state.pokemon_data[5]);
     }
+
     return(<>
       {/* still loading ? */}
       {this.state.loading && <Pokeball className="pokeball_cover"/>}
@@ -115,11 +129,9 @@ export default class Pokedex extends Component {
       {/* finished loading ? */}
       {!this.state.loading &&
       <>
-      <PokedexNav pokemon_data={this.state.pokemon_data} filters={queryParams}/>
-
-
       <section id="page_content">
-        <h1>pokédex</h1>
+        <PokedexNav pokemon_data={this.state.pokemon_data} filters={queryParams}/>
+        <h1>pokédex {!this.filterPokemonData(this.state.pokemon_data, queryParams).length ? <span style={{fontSize: "0.4em"}}>(pas de résultat...)</span> : ''}</h1>
         {/* Display Pokemon Table */}
         <PokemonTable
           list={this.filterPokemonData(this.state.pokemon_data, queryParams)}
@@ -133,7 +145,6 @@ export default class Pokedex extends Component {
           data={this.state.pokemon_data}
           loading_details={this.state.loading_details}
           findPkmn={this.findPkmnByFrenchName}
-          checkLoading={this.checkLoading}
           />
         } />
       </section>
