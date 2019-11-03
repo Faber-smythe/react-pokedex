@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# NATURE DU PROJET :
+### Exercice étudiant sur React.js. Enoncé : développer une pokédex en single-page view avec React, en se servant d'une API externe (pokeapi.co) et de la librairie react-router
+### Ce projet a pour vocation d'être évalué dans le cadre du module sur React suivi à l'IIM (Paris - La Défense)
+### Installation :
+```
+$ yarn install
+$ yarn start
+```
+### La documentation qui suit a été générée automatiquement via create-react-app.
 
 ## Available Scripts
 
