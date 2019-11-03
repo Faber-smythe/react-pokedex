@@ -3,7 +3,6 @@ import React from 'react';
 export default function TypeFilter(props) {
   const { type, toggleType, currentFilters} = props;
   let active_toggle = '';
-  console.log(currentFilters);
   if(currentFilters && currentFilters.length && currentFilters.includes(type.fr_label)){
     active_toggle = 'active';
   }

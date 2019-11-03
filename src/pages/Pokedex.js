@@ -89,7 +89,6 @@ export default class Pokedex extends Component {
     })
   }
   filterPokemonData(data, filters){
-    console.log(filters);
     let filtered_data = data;
     if(filters && filters.search){
       if(filters.search){filtered_data = filtered_data.filter(elem => (elem.names[6].name.toLowerCase()).includes(filters.search))}
